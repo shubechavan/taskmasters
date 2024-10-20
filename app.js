@@ -1,29 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const adminRouter = require('./routes/admin'); // Import admin routes
-const userRouter = require('./routes/user');   // Import user routes
-require('dotenv').config(); // Load environment variables from .env file
+const adminRouter = require('./routes/admin'); 
+const userRouter = require('./routes/user');  
+require('dotenv').config();
 
-const app = express(); // Create an instance of an Express application
-const PORT = process.env.PORT || 3000; // Set the port from environment variables or default to 3000
+const app = express();
+const PORT = process.env.PORT || 3000; 
 
-// Connect to MongoDB
+
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
-.then(() => console.log("Connected to MongoDB")) // Log success message
-.catch(err => console.error("MongoDB connection error:", err)); // Log any connection errors
+.then(() => console.log("Connected to MongoDB"))
+.catch(err => console.error("MongoDB connection error:", err)); 
 
-app.use(bodyParser.json()); // Use bodyParser middleware to parse JSON requests
-
-// Define application routes
-app.use("/admin", adminRouter); // Use admin routes under /admin
-app.use("/user", userRouter);   // Use user routes under /user
+app.use(bodyParser.json()); 
 
 
-// Start the server
+app.use("/admin", adminRouter); 
+app.use("/user", userRouter);  
+
+
+
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`); // Log server start message
+    console.log(`Server is running on port ${PORT}`); 
 });
