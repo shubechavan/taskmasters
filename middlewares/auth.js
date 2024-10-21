@@ -14,8 +14,8 @@ function authenticateJWT(req, res, next) {
             return res.status(403).json({ message: 'Invalid token.' });
         }
 
-        req.user = decoded; // Attach user info to the request object
-        next(); // Proceed to the next middleware or route handler
+        req.user = decoded;
+        next(); 
     });
 }
 
