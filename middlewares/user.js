@@ -1,5 +1,5 @@
-// middleware/user.js
-const User = require('../db/user'); // Import the User model
+
+const User = require('../db/user'); 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const sendEmail=require('../services/mailer');
