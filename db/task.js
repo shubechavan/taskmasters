@@ -23,7 +23,7 @@ const TaskSchema = new mongoose.Schema({
         ref: 'User',
         required: true
     }
-}, { timestamps: true });  // This adds createdAt and updatedAt fields automatically
+}, { timestamps: true });  
 
 const Task = mongoose.model('Task', TaskSchema);
 
