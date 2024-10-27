@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 
-// Connect to MongoDB using the connection string from environment variables
-mongoose.connect(process.env.MONGODB_URI, { // Corrected the syntax here
+
+mongoose.connect(process.env.MONGODB_URI, { 
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -13,9 +13,9 @@ mongoose.connect(process.env.MONGODB_URI, { // Corrected the syntax here
         console.error('Error connecting to MongoDB:', err);
     });
 
-// Import the User and Admin models
-const User = require('./user');  // Import User model
-const Admin = require('./admin');  // Import Admin model
 
-// Export the models
+const User = require('./user');
+const Admin = require('./admin');  
+
+
 module.exports = { User, Admin };
