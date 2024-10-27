@@ -1,10 +1,6 @@
 console.log('Admin middleware loaded'); 
 
 const jwt = require('jsonwebtoken');   
-
-
-
-
 const secretKey = process.env.JWT_SECRET || 'your_secret_key';
 
 function isAdmin(req, res, next) {
