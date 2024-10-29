@@ -14,11 +14,11 @@ If you did not create an account, please ignore this email.
 Best regards,
 The TaskMaster Team`;
 };
-// User registration middleware
+
 async function registerUser(req, res) {
     const { username, password, email } = req.body;
 
-    console.log('Incoming registration data:', req.body); // Debug log
+    console.log('Incoming registration data:', req.body); 
 
     try {
         const existingUser = await User.findOne({ $or: [{ username }, { email }] });
@@ -30,22 +30,22 @@ async function registerUser(req, res) {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({ username, password: hashedPassword, email });
-        await newUser.save(); // Save the new user
+        await newUser.save(); 
 
-        // Send welcome email
+       
         const subject = "Welcome to TaskMaster!";
-        const message = getSignupMessage(username);  // Use helper function to generate the message
-        await sendEmail(email, subject, message);  // Send email to user
+        const message = getSignupMessage(username);  
+        await sendEmail(email, subject, message); 
 
         res.status(201).json({ message: 'User registered successfully. Welcome email sent!' });
     } catch (error) {
-        console.error('Signup error:', error); // Log the error for debugging
+        console.error('Signup error:', error); 
         res.status(500).json({ message: "Error during signup", error: error.message });
     }
 }
 
 
-// User login middleware
+
 async function loginUser(req, res) {
     const { username, password } = req.body;
 
@@ -61,7 +61,7 @@ async function loginUser(req, res) {
         }
 
         const token = jwt.sign({ id: user._id, username: user.username, role: user.role }, secretKey, {
-            expiresIn: '1h', // Token expires in 1 hour
+            expiresIn: '1h', 
         });
 
         res.status(200).json({ message: 'Login successful', token });
@@ -70,5 +70,5 @@ async function loginUser(req, res) {
     }
 }
 
-// Export the middleware functions
+
 module.exports = { registerUser, loginUser };
