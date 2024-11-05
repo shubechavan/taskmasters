@@ -1,9 +1,9 @@
 const express = require('express');
-const { isAdmin } = require('../middlewares/admin'); // Import the admin middleware to protect routes
-const User = require('../db/user'); // Import the User model
-const router = express.Router(); // Create a new router instance
+const { isAdmin } = require('../middlewares/admin'); 
+const User = require('../db/user'); 
+const router = express.Router(); 
 
-// Get all users (admin only)
+
 router.get('/users', isAdmin, async (req, res) => {
     try {
         const users = await User.find(); // Fetch all users
