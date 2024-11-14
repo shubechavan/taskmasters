@@ -6,13 +6,10 @@ const Task =require("../db/task");
 const sendMail=require('../services/mailer');
 const router = express.Router();
 
-// User registration route
-router.post('/register', registerUser); // Handles user registration
+router.post('/register', registerUser);
 
-// User login route
 router.post('/login', loginUser); // Handles user login
 
-// Optional: Get user profile route (requires authentication)
 router.get('/profile', authenticateJWT, async (req, res) => {
     try {
         const userId = req.user.id; // Get user ID from the JWT
